@@ -10,7 +10,8 @@
       </ul>
     </div>
     <button @click="addPrice" class="button ">add price</button>
-    <button @click="addFruit">add fruit</button>
+    <button @click="addFruit" class="button ">add fruit</button>
+    <button @click="addCar" class="button ">add car</button>
   </div>  
 </template>
 <!-- install vue plugin for set up :this is not define vue component name -->
@@ -32,10 +33,16 @@ function addPrice(){
 function addFruit(){
   // Note: function use reactive object need to .value get real value
   fruit.value.push({
-  id: 4,
-  name: 'orange',
-  price: 40
-})
+    id: 4,
+    name: 'orange',
+    price: 40
+  })
+}
+function addCar(){
+  //To ensure that the data remains reactive, you should use the `Object.assign` method to update the reactive object. This way, Vue can track the changes and update the DOM accordingly. Here's the corrected script section:
+  //car ={ brand: '宝马', price: 200 }
+  // Note: use object assign to reactive data ,the page is original reactive data
+  Object.assign(car.value, { brand: '宝马', price: 200 })
 }
 </script>
 
