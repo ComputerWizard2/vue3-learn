@@ -1,9 +1,11 @@
 <template>
   <div class="person">
-   <h2>name:{{ person.name }}</h2>
-   <h2>name:{{ person.age }}</h2>
-   <button @click="changeName" class="button">change name</button>
-   <button @click="changeAge"> changeAge</button>
+   <div>first name: <input v-model="person.firstName"></div>
+   
+   <div>last name:  <input v-model="person.lastName"></div>
+   <div>full name: {{ fullName }}</div>
+   <button @click="changeFullName">change full name</button>
+
   </div>  
 </template>
 <!-- install vue plugin fsr set up :this is not define vue component name -->
@@ -11,20 +13,26 @@
  <!--then config the vite.config.ts  -->
 <script setup name="Person223">
 // structure data still is reactive data by wrapper toRefs
-import { reactive,toRefs } from 'vue';
-let person = reactive({
-  name: 'John Doe',
-  age: 30
+import { computed, ref } from 'vue';
+let person = ref({
+  firstName: 'John ',
+  lastName: 'Doe'
 });
-let {name,age} = toRefs(person)
-function changeName() {
-  name.value += '~'
-}
-function changeAge() {
-  age.value += 1
+// computed is read only ,not change. 
+let fullName = computed({
+  get(){
+    return person.value.firstName+"-"+person.value.lastName;
+  },
+  set(val){
+    const [firstName,lastName]= val.split('-');
+    person.value.firstName=firstName;
+    person.value.lastName=lastName;
+  }
+})
+function changeFullName(){
+  fullName.value='luck-hao'
 }
 </script>
-
 <style scoped>
 .person{
     background-color: aliceblue;
