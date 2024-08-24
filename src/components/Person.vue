@@ -11,9 +11,15 @@
  <!--npm i vite-plugin-vue-setup-extend -D  -->
  <!--then config the vite.config.ts  -->
 <script setup name="Person223">
+// define the basic type data 
+import{ref} from 'vue'
   //data is not reactive recently
-  let name = 'John Doe';
-  let age = 30;
+  // use ref wrapper data that make the data reactive
+  let name = ref('John Doe');
+  let age = ref(30);
+  console.log(name)
+  console.log(age)
+
   function changeName(){
       name = 'Luck';
   }
