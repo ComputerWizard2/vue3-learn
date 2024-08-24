@@ -5,35 +5,21 @@
     <div>Age: {{ age }}</div>
     <button @click="changeName" class="button">change name</button>
     <button @click="changeAge" class="button">change name</button>
-    <hr>
-    <div>{{ a }}</div>
-    <div>{{ b }}</div>
   </div>
 </template>
-
-<script>
-export default {
-  name: 'Person',
-  data(){
-    return {
-      // option api can use conpostion api which define data but not convert
-      a:this.name,  
-      b:this.age
-    }
-  },
-  setup(){
-    //data Note：Your Vue.js component is almost correct
-    let name = 'John Doe';
-    let age = 30;
-    function changeName(){
-        name = 'Luck';
-    }
-    function changeAge(){
-        age +=1;
-    }
-    return {name,age,changeAge,changeName};
+<!-- install vue plugin for set up :this is not define vue component name -->
+ <!--npm i vite-plugin-vue-setup-extend -D  -->
+ <!--then config the vite.config.ts  -->
+<script setup name="Person223">
+  //data is not reactive recently
+  let name = 'John Doe';
+  let age = 30;
+  function changeName(){
+      name = 'Luck';
   }
-}
+  function changeAge(){
+      age +=1;
+  }
 </script>
 
 <style scoped>
