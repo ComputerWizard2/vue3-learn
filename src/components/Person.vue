@@ -9,6 +9,8 @@
         <li>{{ item.price }}</li>
       </ul>
     </div>
+    <button @click="addPrice" class="button ">add price</button>
+    <button @click="addFruit">add fruit</button>
   </div>  
 </template>
 <!-- install vue plugin for set up :this is not define vue component name -->
@@ -16,13 +18,25 @@
  <!--then config the vite.config.ts  -->
 <script setup name="Person223">
 // define reference data  
-import{reactive} from 'vue'
-let car =reactive({brand:'奔驰',price:100  })
-let fruit = reactive([
+import{ref} from 'vue'
+let car =ref({brand:'奔驰',price:100  })
+let fruit = ref([
   {id:1,name:'apple',price:10},
   {id:2,name:'banana',price:20}, 
   {id:3,name:'cherry',price:30}
 ])
+function addPrice(){
+  // Note: function use reactive object need to .value get real value
+  car.value.price += 10
+}
+function addFruit(){
+  // Note: function use reactive object need to .value get real value
+  fruit.value.push({
+  id: 4,
+  name: 'orange',
+  price: 40
+})
+}
 </script>
 
 <style scoped>
