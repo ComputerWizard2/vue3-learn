@@ -16,6 +16,7 @@ export default {
   name: 'Person',
   data(){
     return {
+      // option api can use conpostion api which define data but not convert
       a:this.name,  
       b:this.age
     }
