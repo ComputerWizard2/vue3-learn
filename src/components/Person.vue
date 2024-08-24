@@ -9,6 +9,8 @@
         <li>{{ item.price }}</li>
       </ul>
     </div>
+    <button @click="addFruit" class="button"> add fruit</button>
+    <button @click="changePrice">change price</button>
   </div>  
 </template>
 <!-- install vue plugin for set up :this is not define vue component name -->
@@ -23,6 +25,12 @@ let fruit = reactive([
   {id:2,name:'banana',price:20}, 
   {id:3,name:'cherry',price:30}
 ])
+function addFruit() {
+  fruit.push({id:4,name:'orange',price:40})
+}
+function changePrice() {
+  car.price +=10
+}
 </script>
 
 <style scoped>
