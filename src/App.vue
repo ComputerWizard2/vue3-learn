@@ -1,21 +1,14 @@
 <template>
-<!-- html -->
- <div class="app">
-  <h1> Hello world</h1>
- </div>
+  <!-- html -->
+    <Person/>
+    <Person/>
+    <Person/>
 </template>
 <script>
-export default{
-    name:"App"
+import Person from './components/Person.vue';
+export default {
+  name: "App",
+  components:{Person}
 }
 // js 
 </script>
-<style>
-/* style */
-.app{
-    background-color: aliceblue;
-    box-shadow: 0 0 10px;
-    border-radius: 20px;
-    padding: 20px;
-}
-</style>
