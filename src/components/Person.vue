@@ -1,16 +1,25 @@
 <template>
   <div class="person">
     <h1>Person Page</h1>
-    <p>Name: {{ name }}</p>
-    <p>Age: {{ age }}</p>
+    <div>Name: {{ name }}</div>
+    <div>Age: {{ age }}</div>
     <button @click="changeName" class="button">change name</button>
     <button @click="changeAge" class="button">change name</button>
+    <hr>
+    <div>{{ a }}</div>
+    <div>{{ b }}</div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Person',
+  data(){
+    return {
+      a:this.name,  
+      b:this.age
+    }
+  },
   setup(){
     //data Note：Your Vue.js component is almost correct
     let name = 'John Doe';
@@ -21,7 +30,7 @@ export default {
     function changeAge(){
         age +=1;
     }
-    return ()=>"Hello world";
+    return {name,age,changeAge,changeName};
   }
 }
 </script>
