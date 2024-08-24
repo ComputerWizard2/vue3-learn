@@ -1,31 +1,28 @@
 <template>
   <div class="person">
-    <h1>Person Page</h1>
-    <div>Name: {{ name }}</div>
-    <div>Age: {{ age }}</div>
-    <button @click="changeName" class="button">change name</button>
-    <button @click="changeAge" class="button">change name</button>
-  </div>
+    <div>brand:{{ car.brand }}</div>
+    <div>price:{{ car.price }}</div>
+    <hr>
+    <div>
+      <ul v-for="item in fruit" :key="item.id">
+        <li>{{ item.name }}</li>
+        <li>{{ item.price }}</li>
+      </ul>
+    </div>
+  </div>  
 </template>
 <!-- install vue plugin for set up :this is not define vue component name -->
  <!--npm i vite-plugin-vue-setup-extend -D  -->
  <!--then config the vite.config.ts  -->
 <script setup name="Person223">
-// define the basic type data 
-import{ref} from 'vue'
-  //data is not reactive recently
-  // use ref wrapper data that make the data reactive
-  let name = ref('John Doe');
-  let age = ref(30);
-  console.log(name)
-  console.log(age)
-
-  function changeName(){
-      name = 'Luck';
-  }
-  function changeAge(){
-      age +=1;
-  }
+// define reference data  
+import{reactive} from 'vue'
+let car =reactive({brand:'奔驰',price:100  })
+let fruit = reactive([
+  {id:1,name:'apple',price:10},
+  {id:2,name:'banana',price:20}, 
+  {id:3,name:'cherry',price:30}
+])
 </script>
 
 <style scoped>

@@ -1,8 +1,6 @@
 <template>
   <!-- html -->
     <Person/>
-    <Person/>
-    <Person/>
 </template>
 <script>
 import Person from './components/Person.vue';
