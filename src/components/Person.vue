@@ -2,12 +2,14 @@
   <div class="person">
     <div>name: {{ person.name }}</div>
     <div>age: {{ person.age }}</div>
+    <div>car name: {{ person.car.name }} car price:{{ person.car.price }}</div>
   </div> 
-  <button @click="changeName">change Name</button> 
-  <button @click="changePerson">change Person</button> 
+  <button @click="changeName">change name</button> 
+  <button @click="changeAge">change age</button> 
+  <button @click="changeCarName">change car name</button> 
+  <button @click="changeCarPrice">change car price</button> 
+  <button @click="changeWhole">change all car</button> 
   <hr>
-  <div>{{ obj.a.b.c }}</div>
-  <button @click="changeDeepProp">change deep prop</button>
 </template>
 <!-- install vue plugin fsr set up :this is not define vue component name -->
  <!--npm i vite-plugin-vue-setup-extend -D  -->
@@ -17,29 +19,36 @@
 import { watch, reactive } from 'vue';
 let person = reactive({
   name:'Jolhe',
-  age:12
+  age:12,
+  car:{
+    name:'大众',
+    price:2222
+  }
 });
-let obj = reactive({a:{b:{c:666}}})
 function changeName() {
   person.name += "~";
 }
-function changePerson(){
-  person=Object.assign(person,{name:'Marry', age :22})
-}
-function changeDeepProp(){
-  obj.a.b.c=888
+function changeAge() {
+  person.age += 1;
 }
 
-watch(person, (newValue, oldValue) => {
-  console.log(`new value: ${JSON.stringify(newValue)}, old value: ${JSON.stringify(oldValue)}`);
-} );
+function changeCarName(){
+  person.car.name="雅迪"
+}
+function changeCarPrice(){
+  person.car.price=666
 
-// Implicit listening that force to open and not close
-// the address don't change and old value don't change  so old and new is the same
-
-watch(obj,(newValue,oldValue)=>{
-  console.log('obj changed ',newValue,oldValue);
-})
+}
+function changeWhole(){
+  person.car={
+    name:'奥迪',
+    price:222
+  }
+}
+// 监听对象的某一个特定的值，需要用函数式写法来进行监听，确保不会被其他属性污染
+watch(( )=>person.name,(newValue,oldValue)=>console.log("person change ",newValue,oldValue))
+// 监听对象中的某个对象，也需要写函数式确保当前对象可以被监听到，如果需要监听对象内部属性，需要给监听一个deep 属性
+watch(()=>person.car,(newValue,oldValue)=>console.log('car cahnge ',newValue,oldValue),{deep:true})
 </script>
 <style scoped>
 .person{
