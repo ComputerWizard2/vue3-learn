@@ -1,10 +1,7 @@
 <template>
   <div class="person">
-   <div>first name: <input v-model="person.firstName"></div>
-   
-   <div>last name:  <input v-model="person.lastName"></div>
-   <div>full name: {{ fullName }}</div>
-   <button @click="changeFullName">change full name</button>
+   <div>{{ sum }}</div>
+   <button @click="clickMe">click me</button>
 
   </div>  
 </template>
@@ -13,25 +10,18 @@
  <!--then config the vite.config.ts  -->
 <script setup name="Person223">
 // structure data still is reactive data by wrapper toRefs
-import { computed, ref } from 'vue';
-let person = ref({
-  firstName: 'John ',
-  lastName: 'Doe'
-});
-// computed is read only ,not change. 
-let fullName = computed({
-  get(){
-    return person.value.firstName+"-"+person.value.lastName;
-  },
-  set(val){
-    const [firstName,lastName]= val.split('-');
-    person.value.firstName=firstName;
-    person.value.lastName=lastName;
-  }
-})
-function changeFullName(){
-  fullName.value='luck-hao'
+import { watch, ref } from 'vue';
+let sum = ref(0);
+function clickMe() {
+  sum.value +=  1;
 }
+// watch use to listen to the basical data type
+let stopWatch =watch(sum, (newVal, oldVal) => {
+  console.log(`sum changed from ${oldVal} to ${newVal}`);
+  if(newVal >10){
+    stopWatch();
+  }
+});
 </script>
 <style scoped>
 .person{
