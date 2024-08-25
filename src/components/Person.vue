@@ -35,6 +35,8 @@ watch(person, (newValue, oldValue) => {
 } );
 
 // Implicit listening that force to open and not close
+// the address don't change and old value don't change  so old and new is the same
+
 watch(obj,(newValue,oldValue)=>{
   console.log('obj changed ',newValue,oldValue);
 })
