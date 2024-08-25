@@ -1,14 +1,8 @@
 <template>
-<!-- html -->
- <div class="app">
-  <h1> Hello world</h1>
- </div>
+  <Person/>
 </template>
-<script>
-export default{
-    name:"App"
-}
-// js 
+<script setup name="App">
+  import Person  from './Component/Person.vue';
 </script>
 <style>
 /* style */
